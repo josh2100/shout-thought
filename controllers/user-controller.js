@@ -20,30 +20,28 @@ const userController = {
       //   }
 
       //???? add a status code here?
-      res.json(dbUserData);
+      res.status(200).json(dbUserData);
     } catch (err) {
       console.log("err");
       res.status(400).json(err);
     }
   },
 
-  // Create user
-  //   createUser({ body }, res) {
-  //     User.create(body)
-  //       .then((dbUserData) => res.json(dbUserData))
-  //       .catch((err) => res.status(400).json(err));
-  //   },
-  // async experiment
+  // Get user by id here
+
   async createUser({ body }, res) {
     try {
       const dbUserData = await User.create(body);
 
-      res.json(dbUserData);
+      res.status(200).json(dbUserData);
     } catch (err) {
       res.status(400).json(err);
     }
   },
-  // experiment
+
+  // Delete user here
+
+  // Update a user here
 };
 
 module.exports = userController;

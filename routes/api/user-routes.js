@@ -7,17 +7,15 @@ const {
   //   deletePizza,
 } = require("../../controllers/user-controller");
 
-// GET all pizzas and POST /api/pizzas
-// POST expects { "pizzaName": "string", "createdBy": "string", "size": "Personal",
-// "toppings": [ "string","additional strings",]}
+// GET all Users and POST /api/users
+// POST expects { "username": "string", "email": "string", }
 
-// router.route("/").get(getAllPizza).post(createPizza);
 router.route("/").get(getAllUsers).post(createUser); // Add post method here
 
 // api/pizzas/:id GET one, PUT, and DELETE
-// PUT expects { "pizzaName": "string", "createdBy": "string", "size": "Personal",
-// "toppings": [ "string","additional strings",]}
+// PUT expects { "username": "string", "email": "string", }
 
 // router.route("/:id").get(getPizzaById).put(updatePizza).delete(deletePizza);
+// router.route("/:id").get(getUserById);
 
 module.exports = router;
