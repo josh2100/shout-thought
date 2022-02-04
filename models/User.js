@@ -1,5 +1,6 @@
 const { Schema, model } = require("mongoose");
 const dateFormat = require("../utils/dateFormat");
+const validateEmail = require("../utils/validateEmail");
 
 const UserSchema = new Schema(
   {
@@ -9,12 +10,20 @@ const UserSchema = new Schema(
       required: "Please provide a username!",
       trim: true,
     },
+    //https://stackoverflow.com/questions/18022365/mongoose-validate-email-syntax
     email: {
       type: String,
+      trim: true,
+      lowercase: true,
       unique: true,
       required: "Please provide a valid email address",
-      trim: true,
+      validate: [validateEmail, "Please use a valid email address"],
+      match: [
+        /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+        "Please use a valid email address",
+      ],
     },
+    // experiment with validate
     thoughts: [
       {
         type: Schema.Types.ObjectId,
