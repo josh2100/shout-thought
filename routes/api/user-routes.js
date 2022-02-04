@@ -3,19 +3,16 @@ const {
   getAllUsers,
   getUserById,
   createUser,
-  //   updatePizza,
+  updateUser,
   deleteUser,
 } = require("../../controllers/user-controller");
 
 // GET all Users and POST /api/users
 // POST expects { "username": "string", "email": "string", }
-
 router.route("/").get(getAllUsers).post(createUser); // Add post method here
 
-// api/pizzas/:id GET one, PUT, and DELETE
+// GET one, PUT, and DELETE api/users/:id
 // PUT expects { "username": "string", "email": "string", }
-
-// router.route("/:id").get(getPizzaById).put(updatePizza).delete(deletePizza);
-router.route("/:id").get(getUserById).delete(deleteUser);
+router.route("/:id").get(getUserById).put(updateUser).delete(deleteUser);
 
 module.exports = router;

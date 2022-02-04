@@ -60,6 +60,28 @@ const userController = {
   },
 
   // Update a user here
+  async updateUser({ params, body }, res) {
+    try {
+      const dbUserData = await User.findOneAndUpdate(
+        {
+          _id: params.id,
+        },
+        body,
+        {
+          new: true,
+          runValidators: true,
+        }
+      );
+
+      if (!dbUserData) {
+        res.status(404).json({ message: "No user with that id found" });
+        return;
+      }
+      res.status(200).json(dbUserData);
+    } catch (err) {
+      res.status(400).json(err);
+    }
+  },
 
   async deleteUser({ params }, res) {
     try {
