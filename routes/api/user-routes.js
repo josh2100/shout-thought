@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const {
   getAllUsers,
-  //   getPizzaById,
+  getUserById,
   createUser,
   //   updatePizza,
   //   deletePizza,
@@ -16,6 +16,6 @@ router.route("/").get(getAllUsers).post(createUser); // Add post method here
 // PUT expects { "username": "string", "email": "string", }
 
 // router.route("/:id").get(getPizzaById).put(updatePizza).delete(deletePizza);
-// router.route("/:id").get(getUserById);
+router.route("/:id").get(getUserById);
 
 module.exports = router;
