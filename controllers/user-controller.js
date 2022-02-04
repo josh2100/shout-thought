@@ -37,7 +37,6 @@ const userController = {
         //   })
         .select("-__v");
 
-      // This does not work
       if (!dbUserData) {
         res.status(404).json({ message: "No User with that id found" });
         return;
@@ -60,9 +59,23 @@ const userController = {
     }
   },
 
-  // Delete user here
-
   // Update a user here
+
+  async deleteUser({ params }, res) {
+    try {
+      const dbUserData = await User.findOneAndDelete({ _id: params.id });
+
+      // THIS ONE WORKS
+      if (!dbUserData) {
+        res.status(404).json({ message: "No user with that id found." });
+        return;
+      }
+
+      res.status(200).json(dbUserData);
+    } catch (err) {
+      res.status(400).json(err);
+    }
+  },
 };
 
 module.exports = userController;

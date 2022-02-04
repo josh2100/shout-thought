@@ -4,7 +4,7 @@ const {
   getUserById,
   createUser,
   //   updatePizza,
-  //   deletePizza,
+  deleteUser,
 } = require("../../controllers/user-controller");
 
 // GET all Users and POST /api/users
@@ -16,6 +16,6 @@ router.route("/").get(getAllUsers).post(createUser); // Add post method here
 // PUT expects { "username": "string", "email": "string", }
 
 // router.route("/:id").get(getPizzaById).put(updatePizza).delete(deletePizza);
-router.route("/:id").get(getUserById);
+router.route("/:id").get(getUserById).delete(deleteUser);
 
 module.exports = router;
