@@ -11,13 +11,12 @@ const ReactionSchema = new Schema(
     reactionBody: {
       type: String,
       required: "Please provide a reply body text!",
-      // 280 max, change after testing
-      maxLength: [10, "Maximum 10 characters exceeded"],
+      maxLength: [280, "Maximum 10 characters exceeded"],
       trim: true,
     },
     username: {
       type: String,
-      required: "Please provide a valid email address",
+      required: "Please provide a valid username",
       trim: true,
     },
     createdAt: {
@@ -25,7 +24,7 @@ const ReactionSchema = new Schema(
       default: Date.now,
       get: (createdAtVal) => dateFormat(createdAtVal),
     },
-  }, // Options
+  },
   {
     // Allow the use of getters
     toJSON: {
@@ -45,7 +44,7 @@ const ThoughtSchema = new Schema(
     },
     username: {
       type: String,
-      required: "Please provide a valid email address",
+      required: "Please provide a valid username",
       trim: true,
     },
     createdAt: {

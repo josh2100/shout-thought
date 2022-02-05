@@ -3,22 +3,21 @@ const { User } = require("../models");
 const userController = {
   async getAllUsers(req, res) {
     try {
-      const dbUserData = await User.find({});
-      // Include thoughts associated with user
-      // .populate({
-      //   path: "thoughts",
-      //   // Omits __v
-      //   select: "-__v",
-      // })
-      // .select("-__v")
-      // // Sort by descending timestamps to get newest first
-      // .sort({ _id: -1 });
+      const dbUserData = await User.find({})
+        // Include thoughts associated with user
+        .populate({
+          path: "thoughts",
+          // Omits __v
+          select: "-__v",
+        })
+        .select("-__v")
+        // Sort by descending timestamps to get newest first
+        .sort({ _id: -1 });
 
-      // not working
-      //   if (!dbUserData) {
-      //     res.status(404).json({ message: "No users found" });
-      // return;
-      //   }
+      if (!dbUserData) {
+        res.status(404).json({ message: "No users found" });
+        return;
+      }
 
       //???? add a status code here?
       res.status(200).json(dbUserData);
@@ -59,7 +58,6 @@ const userController = {
     }
   },
 
-  // Update a user here
   async updateUser({ params, body }, res) {
     try {
       const dbUserData = await User.findOneAndUpdate(

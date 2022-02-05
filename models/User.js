@@ -29,6 +29,7 @@ const UserSchema = new Schema(
         ref: "Thought",
       },
     ],
+    // add a getter for friends
     friends: [
       {
         type: Schema.Types.ObjectId,
@@ -48,7 +49,7 @@ const UserSchema = new Schema(
       getters: true,
     },
     // False tells mongoose not to return the id
-    // id: false,
+    id: false,
   }
 );
 
