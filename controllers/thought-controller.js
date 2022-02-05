@@ -59,7 +59,7 @@ const thoughtController = {
     }
   },
 
-  // Update a Thought here
+  //   Update a Thought here
   async updateThought({ params, body }, res) {
     try {
       const dbThoughtData = await Thought.findOneAndUpdate(
@@ -100,4 +100,4 @@ const thoughtController = {
   },
 };
 
-module.exports = ThoughtController;
+module.exports = thoughtController;

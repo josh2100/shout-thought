@@ -41,8 +41,7 @@ const ThoughtSchema = new Schema(
       trim: true,
       required: true,
       // validate that it is between 1 and 280 characters
-      // 280 max, change after testing
-      maxLength: [10, "Maximum 10 characters exceeded"],
+      maxLength: [280, "Maximum 10 characters exceeded"],
     },
     username: {
       type: String,
