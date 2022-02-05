@@ -23,7 +23,6 @@ const UserSchema = new Schema(
         "Please use a valid email address",
       ],
     },
-    // experiment with validate
     thoughts: [
       {
         type: Schema.Types.ObjectId,

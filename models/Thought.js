@@ -1,55 +1,80 @@
-// const { Schema, model } = require("mongoose");
-// const dateFormat = require("../utils/dateFormat");
+const { Schema, model } = require("mongoose");
+const dateFormat = require("../utils/dateFormat");
 
-// const ThoughtSchema = new Schema(
-//   {
-//     thoughtText: {
-//       type: String,
-//       trim: true,
-//       // validate that it is between 1 and 280 characters
-//     },
-//     email: {
-//       type: String,
-//       unique: true,
-//       required: "Please provide a valid email address",
-//       trim: true,
-//     },
-//     thoughts: [
-//       {
-//         type: Schema.Types.ObjectId,
-//         ref: "Thought",
-//       },
-//     ],
-//     friends: [
-//       {
-//         type: Schema.Types.ObjectId,
-//         ref: "User",
-//       },
-//     ],
-//     createdAt: {
-//       type: Date,
-//       default: Date.now,
-//       get: (createdAtVal) => dateFormat(createdAtVal),
-//     },
-//   },
-//   // Schema options
-//   {
-//     toJSON: {
-//       virtuals: true,
-//       getters: true,
-//     },
-//     // False tells mongoose not to return the id
-//     // id: false,
-//   }
-// );
+const ReactionSchema = new Schema(
+  {
+    reactionId: {
+      type: Schema.Types.ObjectId,
+      // Generated automatically
+      default: () => new Types.ObjectId(),
+    },
+    reactionBody: {
+      type: String,
+      required: "Please provide a reply body text!",
+      // 280 max, change after testing
+      maxLength: [10, "Maximum 10 characters exceeded"],
+      trim: true,
+    },
+    username: {
+      type: String,
+      required: "Please provide a valid email address",
+      trim: true,
+    },
+    createdAt: {
+      type: Date,
+      default: Date.now,
+      get: (createdAtVal) => dateFormat(createdAtVal),
+    },
+  }, // Options
+  {
+    // Allow the use of getters
+    toJSON: {
+      getters: true,
+    },
+  }
+);
 
-// // Get total count of friends
-// UserSchema.virtual("friendCount").get(function () {
-//   return this.friends.length;
-// });
+const ThoughtSchema = new Schema(
+  {
+    thoughtText: {
+      type: String,
+      trim: true,
+      required: true,
+      // validate that it is between 1 and 280 characters
+      // 280 max, change after testing
+      maxLength: [10, "Maximum 10 characters exceeded"],
+    },
+    username: {
+      type: String,
+      required: "Please provide a valid email address",
+      trim: true,
+    },
+    createdAt: {
+      type: Date,
+      default: Date.now,
+      get: (createdAtVal) => dateFormat(createdAtVal),
+    },
+    // Associate reactions with thoughts
+    reactions: [ReactionSchema],
+  },
+  // Schema options
+  {
+    toJSON: {
+      virtuals: true,
+      getters: true,
+    },
+    // False tells mongoose not to return the id
+    // id: false,
+  }
+);
 
-// // Create the User model using the UserSchema
-// const User = model("User", UserSchema);
+// Get total count of reactions
+ThoughtSchema.virtual("reactionCount").get(function () {
+  return this.reactions.length;
+});
 
-// // Export the User model
-// module.exports = User;
+// Create the Thought model using the ThoughtSchema
+const Thought = model("Thought", ThoughtSchema);
+
+// Export the Thought model
+module.exports = Thought;
