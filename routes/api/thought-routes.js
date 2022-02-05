@@ -5,7 +5,7 @@ const {
   createThought,
   updateThought,
   deleteThought,
-} = require("../../controllers/Thought-controller");
+} = require("../../controllers/thought-controller");
 
 // GET all thoughts and POST /api/thoughts
 // POST expects { "thoughtText": "string", "username": "string" }
