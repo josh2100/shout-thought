@@ -14,10 +14,10 @@ router.route("/").get(getAllThoughts).post(createThought); // Add post method he
 
 // GET one, PUT, and DELETE api/thoughts/:id
 // PUT expects { "Thoughtname": "string", "email": "string", }
-// router
-//   .route("/:id")
-//   .get(getThoughtById)
-//   .put(updateThought)
-//   .delete(deleteThought);
+router
+  .route("/:id")
+  .get(getThoughtById)
+  .put(updateThought)
+  .delete(deleteThought);
 
 module.exports = router;
