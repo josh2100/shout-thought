@@ -30,10 +30,10 @@ const userController = {
   async getUserById({ params }, res) {
     try {
       const dbUserData = await User.findOne({ _id: params.id })
-        //   .populate({
-        //     path: "thoughts",
-        //     select: "-__v",
-        //   })
+        .populate({
+          path: "thoughts",
+          select: "-__v",
+        })
         .select("-__v");
 
       if (!dbUserData) {

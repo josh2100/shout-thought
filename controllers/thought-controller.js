@@ -30,7 +30,7 @@ const thoughtController = {
     try {
       const dbThoughtData = await Thought.findOne({ _id: params.id })
         .populate({
-          path: "thoughts",
+          path: "reactions",
           select: "-__v",
         })
         .select("-__v");
