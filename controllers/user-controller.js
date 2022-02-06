@@ -11,7 +11,7 @@ const userController = {
           select: "-__v",
         })
         .select("-__v")
-        // Sort by descending timestamps to get newest first
+        // Sort by descending timestamps for newest first
         .sort({ _id: -1 });
 
       if (!dbUserData) {
@@ -19,7 +19,6 @@ const userController = {
         return;
       }
 
-      //???? add a status code here?
       res.status(200).json(dbUserData);
     } catch (err) {
       console.log("err");
@@ -85,7 +84,6 @@ const userController = {
     try {
       const dbUserData = await User.findOneAndDelete({ _id: params.id });
 
-      // THIS ONE WORKS
       if (!dbUserData) {
         res.status(404).json({ message: "No user with that id found." });
         return;

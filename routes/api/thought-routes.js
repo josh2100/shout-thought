@@ -5,24 +5,10 @@ const {
   createThought,
   updateThought,
   deleteThought,
+  addReaction,
 } = require("../../controllers/thought-controller");
 
-// GET all thoughts and POST /api/thoughts
-// POST expects { "thoughtText": "string", "username": "string" }
-// router.route("/").get(getAllThoughts).post(createThought); // Add post method here
-// // router.route("/").get(getAllThoughts);
-
-// // GET one, PUT, and DELETE api/thoughts/:id
-// // PUT expects { "thoughtText": "string", "username": "string" }
-// router
-//   .route("/:id")
-//   .get(getThoughtById)
-//   .put(updateThought)
-//   .delete(deleteThought);
-
-/////////// above works, below in progress
-
-// GET all thoughts and POST /api/thoughts/<userId>
+// GET all thoughts /api/thoughts/
 // POST expects { "thoughtText": "string", "username": "string" }
 router.route("/").get(getAllThoughts);
 
@@ -38,4 +24,27 @@ router
   .put(updateThought)
   .delete(deleteThought);
 
+// Add reaction, delete a comment /api/thoughts/<userId>/<commentId>
+// Add reaction expects {"reactionBody": "string", "username": "string" }
+// router.route("/:userId/:thoughtId").put(addReaction).delete(removeThought);
+// router.route("/:userId/:thoughtId").put(addReaction);
+
+//git
+// /api/thoughts/:thoughtId/reactions
+router.route('/:thoughtId/reactions').post(addReaction);
+//git
+
 module.exports = router;
+
+//// EXAMPLE BELOW
+//// Add a Comment /api/comments/<pizzaId>
+// Expects { "writtenBy": "string", "commentBody": "string" }
+
+// router.route("/:pizzaId").post(addComment);
+
+// Add Reply, delete a comment /api/comments/<pizzaId>/<commentId>
+// Add Reply expects {"replyBody": "Lordy!", "writtenBy": "Sid the Kid" }
+// router.route("/:pizzaId/:commentId").put(addReply).delete(removeComment);
+
+// Delete a reply /api/comments/<pizzaId>/<commentId>/<replyId>
+// router.route("/:pizzaId/:commentId/:replyId").delete(removeReply);

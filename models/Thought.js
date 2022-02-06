@@ -1,4 +1,4 @@
-const { Schema, model } = require("mongoose");
+const { Schema, model, Types } = require("mongoose");
 const dateFormat = require("../utils/dateFormat");
 
 const ReactionSchema = new Schema(
@@ -62,7 +62,7 @@ const ThoughtSchema = new Schema(
       getters: true,
     },
     // False tells mongoose not to return the id
-    // id: false,
+    id: false,
   }
 );
 
