@@ -118,6 +118,25 @@ const thoughtController = {
       res.status(400).json(err);
     }
   },
+
+  // Delete Reaction
+  async deleteReaction({ params }, res) {
+    try {
+      const dbThoughtData = await Thought.findOneAndUpdate(
+        { _id: params.thoughtId },
+        { $pull: { reactions: { reactionId: params.reactionId } } },
+        { runValidators: true, new: true }
+      );
+
+      if (!dbThoughtData) {
+        return res.status(404).json({ message: "No thought with this id!" });
+      }
+
+      res.status(200).json(dbThoughtData);
+    } catch (err) {
+      res.status(400).json(err);
+    }
+  },
 };
 
 module.exports = thoughtController;
