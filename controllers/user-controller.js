@@ -94,6 +94,25 @@ const userController = {
       res.status(400).json(err);
     }
   },
+
+  async addFriend({ params }, res) {
+    try {
+      const dbUserData = await User.findOneAndUpdate(
+        { _id: params.userId },
+        { $addToSet: { friends: params.friendId } },
+        { new: true }
+      );
+
+      if (!dbUserData) {
+        return res.status(404).json({ message: "No user found with this ID" });
+      }
+
+      res.status(200).json(dbUserData);
+    } catch (err) {
+      console.log(err);
+      res.status(400).json(err);
+    }
+  },
 };
 
 module.exports = userController;
