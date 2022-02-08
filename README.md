@@ -1,7 +1,8 @@
 # Shout Thought
+
 Shout your thoughts out to the world with this social media API.
 
-Deployment: link here
+Video Walkthrough: link here
 
 ![Shout Thought Screenshot](./assets/images/screenshot.png)
 
@@ -17,11 +18,9 @@ Deployment: link here
 
 ## Installation
 
-
-
 ## Usage
 
-This is just an API for a social network, there is no front end. You must use Insomnia or another API testing tool to use it. 
+This is just an API for a social network, there is no front end. You must use Insomnia or another API testing tool to use it.
 
 ## License
 
