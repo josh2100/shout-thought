@@ -24,15 +24,16 @@ router
   .put(updateThought)
   .delete(deleteThought);
 
-// Add reaction, delete a comment /api/thoughts/<userId>/<commentId>
 // Add reaction expects {"reactionBody": "string", "username": "string" }
 // router.route("/:userId/:thoughtId").put(addReaction).delete(removeThought);
 // router.route("/:userId/:thoughtId").put(addReaction);
 
-//git
+// Add reaction /api/thoughts/<thoughtId>/reactions
 // /api/thoughts/:thoughtId/reactions
-router.route('/:thoughtId/reactions').post(addReaction);
-//git
+router.route("/:thoughtId/reactions").post(addReaction);
+
+// DELETE A REACTION?? /api/thoughts/<thoughtId>/reactions/reactionId
+
 
 module.exports = router;
 

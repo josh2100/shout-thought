@@ -100,22 +100,23 @@ const thoughtController = {
     }
   },
 
-  // Add Reaction
-  addReaction({ params, body }, res) {
-    Thought.findOneAndUpdate(
-      { _id: params.thoughtId },
-      // To avoid duplicates, use addToSet instead of $push
-      { $push: { reactions: body } },
-      { new: true, runValidators: true }
-    )
-      .then((dbThoughtData) => {
-        if (!dbThoughtData) {
-          res.status(404).json({ message: "No thought found with this id! " });
-          return;
-        }
-        res.json(dbThoughtData);
-      })
-      .catch((err) => res.json(err));
+  async addReaction({ params, body }, res) {
+    try {
+      const dbThoughtData = await Thought.findOneAndUpdate(
+        { _id: params.thoughtId },
+        { $push: { reactions: body } },
+        { new: true, runValidators: true }
+      );
+
+      if (!dbThoughtData) {
+        res.status(404).json({ message: "No thought found with this id! " });
+        return;
+      }
+
+      res.status(200).json(dbThoughtData);
+    } catch (err) {
+      res.status(400).json(err);
+    }
   },
 };
 
