@@ -128,8 +128,11 @@ const thoughtController = {
         { runValidators: true, new: true }
       );
 
+      console.log(dbThoughtData);
+      // Object.values?
+      //////!dbThoughtData.reactions.includes(params.reactionId) ????
       if (!dbThoughtData) {
-        return res.status(404).json({ message: "No thought with this id!" });
+        return res.status(404).json({ message: "No reaction with this id!" });
       }
 
       res.status(200).json(dbThoughtData);
