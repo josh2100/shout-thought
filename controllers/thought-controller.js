@@ -16,7 +16,6 @@ const thoughtController = {
 
       if (!dbThoughtData) {
         res.status(404).json({ message: "No Thoughts found" });
-        return;
       }
 
       res.status(200).json(dbThoughtData);
@@ -37,7 +36,6 @@ const thoughtController = {
 
       if (!dbThoughtData) {
         res.status(404).json({ message: "No Thought with that id found" });
-        return;
       }
 
       res.status(200).json(dbThoughtData);
@@ -77,7 +75,6 @@ const thoughtController = {
 
       if (!dbThoughtData) {
         res.status(404).json({ message: "No Thought with that id found" });
-        return;
       }
       res.status(200).json(dbThoughtData);
     } catch (err) {
@@ -91,7 +88,6 @@ const thoughtController = {
 
       if (!dbThoughtData) {
         res.status(404).json({ message: "No Thought with that id found." });
-        return;
       }
 
       res.status(200).json(dbThoughtData);
@@ -110,7 +106,6 @@ const thoughtController = {
 
       if (!dbThoughtData) {
         res.status(404).json({ message: "No thought found with this id! " });
-        return;
       }
 
       res.status(200).json(dbThoughtData);
@@ -119,7 +114,6 @@ const thoughtController = {
     }
   },
 
-  // Delete Reaction
   async deleteReaction({ params }, res) {
     try {
       const dbThoughtData = await Thought.findOneAndUpdate(
@@ -127,13 +121,6 @@ const thoughtController = {
         { $pull: { reactions: { reactionId: params.reactionId } } },
         { runValidators: true, new: true }
       );
-
-      console.log(dbThoughtData);
-      // Object.values?
-      //////!dbThoughtData.reactions.includes(params.reactionId) ????
-      if (!dbThoughtData) {
-        return res.status(404).json({ message: "No reaction with this id!" });
-      }
 
       res.status(200).json(dbThoughtData);
     } catch (err) {

@@ -16,7 +16,6 @@ const userController = {
 
       if (!dbUserData) {
         res.status(404).json({ message: "No users found" });
-        return;
       }
 
       res.status(200).json(dbUserData);
@@ -37,7 +36,6 @@ const userController = {
 
       if (!dbUserData) {
         res.status(404).json({ message: "No User with that id found" });
-        return;
       }
 
       res.status(200).json(dbUserData);
@@ -72,7 +70,6 @@ const userController = {
 
       if (!dbUserData) {
         res.status(404).json({ message: "No user with that id found" });
-        return;
       }
       res.status(200).json(dbUserData);
     } catch (err) {
@@ -86,7 +83,6 @@ const userController = {
 
       if (!dbUserData) {
         res.status(404).json({ message: "No user with that id found." });
-        return;
       }
 
       res.status(200).json(dbUserData);
@@ -104,7 +100,7 @@ const userController = {
       );
 
       if (!dbUserData) {
-        return res.status(404).json({ message: "No user found with this ID" });
+        res.status(404).json({ message: "No user found with this ID" });
       }
 
       res.status(200).json(dbUserData);
@@ -123,7 +119,7 @@ const userController = {
       );
 
       if (!dbUserData) {
-        return res.status(404).json({ message: "No user with this ID found." });
+        res.status(404).json({ message: "No user with this ID found." });
       }
 
       res.json(dbUserData);
