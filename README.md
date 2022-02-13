@@ -2,7 +2,7 @@
 
 Shout your thoughts out to the world with this social media API.
 
-Video Walkthrough: link here
+Video Walkthrough: https://drive.google.com/file/d/1NBDzwRY-_dK9A7ueqrBQH9ir9Hd54tTS/view 
 
 ![Shout Thought Screenshot](./assets/images/screenshot.png)
 
