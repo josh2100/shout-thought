@@ -63,6 +63,7 @@ const ThoughtSchema = new Schema(
       getters: true,
     },
     // False tells mongoose not to return the id
+    /////??? _id?
     id: false,
   }
 );
